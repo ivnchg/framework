@@ -31,6 +31,24 @@ trait CrawlerTrait
      */
     protected $serverVariables = [];
 
+
+    /**
+     * Assert that an input field contains the given value.
+     *
+     * @param  string  $selector
+     * @param  string  $expected
+     * @return $this
+     */
+    public function seeInField($selector, $expected)
+    {
+        $this->assertSame(
+            $this->getInputOrTextareaValue($selector),
+            $expected,
+            "The input [{$selector}] has not the value [{$expected}]."
+        );
+        return $this;
+    }
+
     /**
      * Visit the given URI with a JSON request.
      *
